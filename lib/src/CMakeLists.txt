@@ -1,2 +1,2 @@
-
-add_library(HazelLib SHARED Test.h Test.cpp)
+add_compile_definitions(HZ_BUILD_DLL)
+add_library(HazelLib SHARED hazel/application.cpp)

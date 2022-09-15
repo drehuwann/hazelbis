@@ -1,7 +1,14 @@
-namespace Hazel {
-    __declspec(dllimport) void Print();
-}
+#include "hazel.h"
 
-int main() {
-    Hazel::Print();
+class Sandbox : public Hazel::Application {
+public:
+    Sandbox() {
+    }
+
+    ~Sandbox() {
+    }
+};
+
+Hazel::Application *Hazel::CreateApplication() {
+    return new Sandbox();
 }

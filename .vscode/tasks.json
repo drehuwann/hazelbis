@@ -10,12 +10,12 @@
                 "isDefault": true
             },
             "type": "shell",
-            "command": "pushd build; cmake ..; cmake --build .; popd"
+            "command": "pushd build; cmake ..; cmake --build .; cp lib/src/HazelLib.dll ../bin; cp sandbox/src/Sandbox.exe ../bin; popd;"
         },
         {
             "label" : "clean cmake",
             "type" : "shell",
-            "command" : "pushd build; rm -r -fo *; popd"
+            "command" : "pushd build; rm -r -fo *; git restore README.md; popd; rm bin/*.exe; rm bin/*.dll"
         }
     ]
 }
