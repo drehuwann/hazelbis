@@ -1,0 +1,3 @@
+
+#define HazelBis_VERSION_MAJOR @HazelBis_VERSION_MAJOR@
+#define HazelBis_VERSION_MINOR @HazelBis_VERSION_MINOR@

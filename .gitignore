@@ -1,0 +1,9 @@
+bin/*.dll
+bin/*.exe
+build/lib
+build/sandbox
+build/.ninja_*
+build/build.*
+build/*.cmake
+build/CMake*
+build/HazelBisConfig.h
