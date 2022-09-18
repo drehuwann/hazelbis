@@ -7,7 +7,17 @@
 #include <mutex>
 #include <ctime>
 #include <typeinfo>
+#include <source_location>
 
+constexpr const char* baseFilename(const char* path) {
+    const char* file = path;
+    while (*path) {
+        if (*path++ == '\\') {
+            file = path;
+        }
+    }
+    return file;
+}
 
 class HZ_API Logger : public Singleton<Logger> {
     friend class Singleton<Logger>;
@@ -21,10 +31,10 @@ public:
         CriticalPrio
 	};
 
-    static void SetPriority(Priority newPrio){
+    static void SetPriority(Priority newPrio, const std::source_location& loc = std::source_location::current()) {
         Logger *instance = GetInst();
         instance->prio = newPrio;
-        instance->Log(InfoPrio, "Log level set to %s", (const char *)(&instance->priorityStr[newPrio]));
+        instance->Log(InfoPrio, loc, "Log level set to %s", (const char *)(&instance->priorityStr[newPrio]));
     }
 
     static Priority GetPriority() {
@@ -56,30 +66,22 @@ public:
 	    return instance->EnableFileOutput();
     }
 
-    template <typename... Args> static void Trace(const char *msg, Args... args) {
-        GetInst().Log(TracePrio, msg, args...);
-    }
+#define METALOG(_LVL_) \
+    template <typename... Args> struct _LVL_ {\
+        _LVL_(Args&& ...args, const std::source_location& loc = std::source_location::current()) {\
+            GetInst()->Log(##_LVL_##Prio, loc, args...);\
+        }\
+    };\
+    template <typename... Args> _LVL_(Args&&...) -> _LVL_<Args...>;
 
-    template <typename... Args> static void Debug(const char *msg, Args... args) {
-        GetInst()->Log(DebugPrio, msg, args...);
-    }
-    
-    template <typename... Args> static void Info(const char *msg, Args... args) {
-        GetInst()->Log(InfoPrio, msg, args...);
-    }
+    METALOG(Trace)    
+    METALOG(Debug)    
+    METALOG(Info)    
+    METALOG(Warn)    
+    METALOG(Error)    
+    METALOG(Critical)    
 
-    template <typename... Args> static void Warn(const char *msg, Args... args) {
-        GetInst()->Log(WarnPrio, msg, args...);
-    }
-
-    template <typename... Args> static void Error(const char *msg, Args... args) {
-        GetInst()->Log(ErrorPrio, msg, args...);
-    }
-
-    template <typename... Args> static void Critical(const char *msg, Args... args) {
-        GetInst()->Log(CriticalPrio, msg, args...);
-    }
-
+#undef METALOG(_LVL_)
 
 private:
     Logger() {
@@ -108,20 +110,21 @@ private:
         "CRITICAL\0"
     };
 
-    template <typename... Args> void Log(Priority msgPrio, const char *msg, Args... args) {
+    template <typename... Args> void Log(Priority msgPrio,  const std::source_location& loc, Args... args) {
         if (prio <= msgPrio) {
             std::time_t currTime = std::time(0);
             std::tm *timeStamp = std::localtime(&currTime);
             std::scoped_lock lock(loggerMutex);
 		    std::strftime(buffer, 80, timeFormat, timeStamp);
-		    std::printf("%s    ", buffer);
+		    std::printf("%s -> ", buffer);
 		    std::printf("%s : ", (const char *)(&(priorityStr[msgPrio][0])));
-		    std::printf(msg, args...);
+            std::printf("In %s, at line %d : ", baseFilename(loc.file_name()), loc.line());
+		    std::printf(args...);
 		    std::printf("\n");
             if (file) {
                 std::fprintf(file, "%s    ", buffer);
 		        std::fprintf(file, "%s : ",  (const char *)(&(priorityStr[msgPrio][0])));
-		        std::fprintf(file, msg, args...);
+		        std::fprintf(file, args...);
 		        std::fprintf(file, "\n");
 	        }
 	    }
@@ -136,11 +139,11 @@ private:
 	    return true;
     }
 
-    void FreeFile() {
+    void FreeFile(const std::source_location& loc = std::source_location::current()) {
  	    if (file) {
-    		Logger::Info("closing log file %s", filename);
+            GetInst()->Log(InfoPrio, loc, "closing log file %s", filename);
             std::fclose(file);
-            file = 0;
+            file = nullptr;
 	    }   
     }
 };
