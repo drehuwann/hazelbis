@@ -1,5 +1,4 @@
 #include "hazel.h"
-
 class Sandbox : public Hazel::Application {
 public:
     Sandbox() {
@@ -10,5 +9,10 @@ public:
 };
 
 Hazel::Application *Hazel::CreateApplication() {
-    return new Sandbox();
+    auto toRet = new Sandbox();
+    if (toRet == nullptr) {
+        Logger::Error("couldn't create %s object", typeid(toRet).name());
+    }
+    Logger::Info("succesfully created %s object, at 0x%p", typeid(toRet).name(), toRet);
+    return toRet;
 }

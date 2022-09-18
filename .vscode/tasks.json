@@ -9,13 +9,15 @@
                 "kind": "build",
                 "isDefault": true
             },
+            "dependsOn": "clean cmake",
             "type": "shell",
-            "command": "pushd build; cmake ..; cmake --build .; cp lib/src/HazelLib.dll ../bin; cp sandbox/src/Sandbox.exe ../bin; popd;"
+            "command": "pushd build; cmake ..; cmake --build .; cp lib/src/HazelLib.dll ../bin; cp sandbox/src/Sandbox.exe ../bin; popd;",
+            "problemMatcher": []
         },
         {
-            "label" : "clean cmake",
-            "type" : "shell",
-            "command" : "pushd build; rm -r -fo *; git restore README.md; popd; rm bin/*.exe; rm bin/*.dll"
+            "label": "clean cmake",
+            "type": "shell",
+            "command": "pushd build; rm -r -fo *; git restore README.md; popd; pushd bin; rm -r -fo *; git restore README.md; popd"
         }
     ]
 }

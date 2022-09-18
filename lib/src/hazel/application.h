@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core.h"
+#include "logger.h"
 
 namespace Hazel {
     class HZ_API Application {

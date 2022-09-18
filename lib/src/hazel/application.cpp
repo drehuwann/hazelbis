@@ -1,4 +1,4 @@
-#include "Application.h"
+#include "application.h"
 
 namespace Hazel {
     Application::Application() {
@@ -8,6 +8,7 @@ namespace Hazel {
     }
 
     void Application::Run() {
+        Logger::Info("Launching Application instanciated at 0x%p", this);
         while (true);
     }
 }
