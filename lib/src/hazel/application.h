@@ -1,5 +1,6 @@
 #pragma once
 
+#include "hzpch.h"
 #include "./core.h"
 #include "../logger/logger.h"
 #include "events/appevents.h"

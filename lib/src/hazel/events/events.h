@@ -1,8 +1,6 @@
 #pragma once
 
-#include <String>
-#include <sstream>
-#include <functional>
+#include <hzpch.h>
 
 #include "../core.h"
 #include "../logger/logger.h"

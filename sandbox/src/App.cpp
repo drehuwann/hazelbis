@@ -1,3 +1,4 @@
+#include "hzpch.h"
 #include "../../lib/src/hazel.h"
 class Sandbox : public Hazel::Application {
 public:

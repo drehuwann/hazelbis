@@ -1,5 +1,6 @@
 #pragma once
 
+#include "hzpch.h"
 #include "../hazel/core.h"
 #include "../design/singleton.h"
 
