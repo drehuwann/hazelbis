@@ -2,7 +2,7 @@
 
 #ifdef HZ_PLATFORM_WINDOWS
 
-#include "application.h"
+#include "./application.h"
 
 extern Hazel::Application *Hazel::CreateApplication();
 

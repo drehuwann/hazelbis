@@ -1,7 +1,7 @@
 #pragma once
 
-#include "hazel/core.h"
-#include "design/singleton.h"
+#include "../hazel/core.h"
+#include "../design/singleton.h"
 
 #include <cstdio>
 #include <mutex>
@@ -81,7 +81,7 @@ public:
     METALOG(Error)    
     METALOG(Critical)    
 
-#undef METALOG(_LVL_)
+#undef METALOG
 
 private:
     Logger() {
@@ -122,8 +122,9 @@ private:
 		    std::printf(args...);
 		    std::printf("\n");
             if (file) {
-                std::fprintf(file, "%s    ", buffer);
+                std::fprintf(file, "%s -> ", buffer);
 		        std::fprintf(file, "%s : ",  (const char *)(&(priorityStr[msgPrio][0])));
+                std::fprintf(file, "In %s, at line %d : ", baseFilename(loc.file_name()), loc.line());
 		        std::fprintf(file, args...);
 		        std::fprintf(file, "\n");
 	        }

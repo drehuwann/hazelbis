@@ -1,8 +1,10 @@
 #pragma once
 
-#include "core.h"
-#include "logger.h"
-
+#include "./core.h"
+#include "../logger/logger.h"
+#include "events/appevents.h"
+#include "events/keyevents.h"
+#include "events/mouseevents.h"
 namespace Hazel {
     class HZ_API Application {
     public:
