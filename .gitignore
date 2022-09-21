@@ -7,3 +7,6 @@ build/build.*
 build/*.cmake
 build/CMake*
 build/HazelBisConfig.h
+build/glfw
+glfw/*
+glfw

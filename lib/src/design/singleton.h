@@ -1,6 +1,7 @@
 #pragma once
 
 #include "hzpch.h"
+
 template <class T> class Singleton {
 protected:
     Singleton() noexcept = default;

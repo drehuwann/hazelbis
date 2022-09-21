@@ -1,6 +1,7 @@
 #pragma once
 
 #include "hzpch.h"
+
 #include <cstdint>
 
 namespace Hazel {

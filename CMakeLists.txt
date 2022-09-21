@@ -10,11 +10,12 @@ ENDIF()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+add_subdirectory(glfw)
 add_subdirectory(lib/src)
 add_subdirectory(sandbox/src)
 
 target_link_libraries(Sandbox PUBLIC HazelLib)
 
-target_include_directories(HazelLib PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_SOURCE_DIR}/lib/src" "${PROJECT_SOURCE_DIR}/lib/src/hazel" "${PROJECT_SOURCE_DIR}/lib/src/design" "${PROJECT_SOURCE_DIR}/lib/src/logger" "${PROJECT_SOURCE_DIR}/lib/src/events")
+target_include_directories(HazelLib PUBLIC "${PROJECT_BINARY_DIR}" "${PROJECT_BINARY_DIR}/glfw/include/GLFW" "${PROJECT_SOURCE_DIR}/lib/src" "${PROJECT_SOURCE_DIR}/lib/src/hazel" "${PROJECT_SOURCE_DIR}/lib/src/design" "${PROJECT_SOURCE_DIR}/lib/src/logger" "${PROJECT_SOURCE_DIR}/lib/src/events")
 
 configure_file(HazelBisConfig.h.in HazelBisConfig.h)

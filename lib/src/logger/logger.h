@@ -1,14 +1,15 @@
 #pragma once
 
 #include "hzpch.h"
-#include "../hazel/core.h"
-#include "../design/singleton.h"
 
 #include <cstdio>
 #include <mutex>
 #include <ctime>
 #include <typeinfo>
 #include <source_location>
+
+#include "hazel/core.h"
+#include "design/singleton.h"
 
 constexpr const char* baseFilename(const char* path) {
     const char* file = path;

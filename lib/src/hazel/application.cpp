@@ -1,17 +1,20 @@
 #include "hzpch.h"
-#include "./application.h"
-namespace Hazel {
 
+#include "application.h"
+
+namespace Hazel {
     Application::Application() {
+        mWindow = std::unique_ptr<Window>(Window::Create());
     }
     
     Application::~Application() {
     }
 
     void Application::Run() {
-        Logger::Info("Launching Application instanciated at 0x%p", this);
-        Logger::SetPriority(Logger::TracePrio);
-        WindResizeEvent(1280, 720);
-        while (true);
+        while (mRunning) {
+            glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT);
+            mWindow->OnUpdate();
+        }
     }
 }

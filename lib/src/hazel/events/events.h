@@ -1,9 +1,9 @@
 #pragma once
 
-#include <hzpch.h>
+#include "hzpch.h"
 
-#include "../core.h"
-#include "../logger/logger.h"
+#include "core.h"
+#include "logger/logger.h"
 
 namespace Hazel {
     enum class EventType {

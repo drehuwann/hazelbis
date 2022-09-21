@@ -1,5 +1,7 @@
 #include "hzpch.h"
-#include "../../lib/src/hazel.h"
+
+#include "hazel.h"
+
 class Sandbox : public Hazel::Application {
 public:
     Sandbox() {

@@ -3,7 +3,8 @@
 #ifdef HZ_PLATFORM_WINDOWS
 
 #include "hzpch.h"
-#include "./application.h"
+
+#include "application.h"
 
 extern Hazel::Application *Hazel::CreateApplication();
 

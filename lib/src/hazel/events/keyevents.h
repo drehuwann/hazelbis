@@ -1,8 +1,9 @@
 #pragma once
 
 #include "hzpch.h"
-#include "./events.h"
-#include "../keycodes.h"
+
+#include "events.h"
+#include "keycodes.h"
 
 namespace Hazel {
 
