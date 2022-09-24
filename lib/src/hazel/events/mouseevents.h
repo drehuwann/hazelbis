@@ -9,7 +9,7 @@ namespace Hazel {
 	class MouseMovedEvent : public Event {
 	public:
 		MouseMovedEvent(const float x, const float y) : m_MouseX(x), m_MouseY(y) {
-            Logger::Trace("Spawning mousemoved(%d, %d) event.", x, y);
+            Logger::Info("Spawning mousemoved(%f, %f) event.", x, y);
         }
 
 		float GetX() const {
@@ -35,7 +35,7 @@ namespace Hazel {
 	class MouseScrolledEvent : public Event {
 	public:
 		MouseScrolledEvent(const float xOffset, const float yOffset) : m_XOffset(xOffset), m_YOffset(yOffset) {
-            Logger::Trace("Spawning mouseScrolled(%d, %d) event.", xOffset, yOffset);
+            Logger::Info("Spawning mouseScrolled(%f, %f) event.", xOffset, yOffset);
         }
 
 		float GetXOffset() const {
@@ -76,7 +76,7 @@ namespace Hazel {
 	class MouseButtonPressedEvent : public MouseButtonEvent {
 	public:
 		MouseButtonPressedEvent(const MouseCode button) : MouseButtonEvent(button) {
-            Logger::Trace("Spawning mouseBtnPressed(%d) event.", button);
+            Logger::Info("Spawning mouseBtnPressed(%d) event.", button);
         }
 
 		std::string ToString() const override {
@@ -91,7 +91,7 @@ namespace Hazel {
 	class MouseButtonReleasedEvent : public MouseButtonEvent {
 	public:
 		MouseButtonReleasedEvent(const MouseCode button) : MouseButtonEvent(button) {
-            Logger::Trace("Spawning mouseBtnReleased(%d) event.", button);
+            Logger::Info("Spawning mouseBtnReleased(%d) event.", button);
         }
 
 		std::string ToString() const override {

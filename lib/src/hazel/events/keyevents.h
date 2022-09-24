@@ -25,7 +25,7 @@ namespace Hazel {
 	class KeyPressedEvent : public KeyEvent {
 	public:
 		KeyPressedEvent(const KeyCode keycode, bool isRepeat = false) : KeyEvent(keycode), m_IsRepeat(isRepeat) {
-			Logger::Trace("Spawning keyPressed(code = %d, repeat = %s) event.", keycode , (isRepeat ? "true" : "false"));
+			Logger::Info("Spawning keyPressed(code = %d, repeat = %s) event.", keycode , (isRepeat ? "true" : "false"));
         }
 
 		bool IsRepeat() const {
@@ -47,7 +47,7 @@ namespace Hazel {
 	class KeyReleasedEvent : public KeyEvent {
 	public:
 		KeyReleasedEvent(const KeyCode keycode) : KeyEvent(keycode) {
-			Logger::Trace("Spawning keyReleased(code = %d) event.", keycode);
+			Logger::Info("Spawning keyReleased(code = %d) event.", keycode);
         }
 
 		std::string ToString() const override {
@@ -62,7 +62,7 @@ namespace Hazel {
 	class KeyTypedEvent : public KeyEvent {
 	public:
 		KeyTypedEvent(const KeyCode keycode) : KeyEvent(keycode) {
-			Logger::Trace("Spawning keyTyped(code = %d) event.", keycode);
+			Logger::Info("Spawning keyTyped(code = %d) event.", keycode);
         }
 
 		std::string ToString() const override {

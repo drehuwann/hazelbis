@@ -9,7 +9,7 @@ namespace Hazel {
 	{
 	public:
 		WindResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) {
-			Logger::Trace("Spawning windResize(%d, %d) event.", width, height);
+			Logger::Info("Spawning windResize(%d, %d) event.", width, height);
         }
 
 		unsigned int GetWidth() const {

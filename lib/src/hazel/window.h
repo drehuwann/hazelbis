@@ -3,7 +3,10 @@
 #include "./hzpch.h"
 
 #include "hazel/core.h"
-#include "hazel/events/events.h"
+#include "hazel/events/appevents.h"
+#include "hazel/events/appevents.h"
+#include "hazel/events/keyevents.h"
+#include "hazel/events/mouseevents.h"
 
 namespace Hazel {
 

@@ -18,6 +18,8 @@ namespace Hazel {
         virtual ~Application();
 
         void Run();
+        void OnEvent(Event &e);
+
     private:
         std::unique_ptr<Window> mWindow;
         bool mRunning = true;
